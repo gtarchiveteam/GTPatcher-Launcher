@@ -14,3 +14,9 @@ C:\Users\Kaylie\source\repos\GTPatcher-Launcher\GTPatcher-Launcher\obj\Debug\net
 C:\Users\Kaylie\source\repos\GTPatcher-Launcher\GTPatcher-Launcher\obj\Debug\net8.0-windows\GTPatcher-Launcher.pdb
 C:\Users\Kaylie\source\repos\GTPatcher-Launcher\GTPatcher-Launcher\obj\Debug\net8.0-windows\GTPatcher-Launcher.genruntimeconfig.cache
 C:\Users\Kaylie\source\repos\GTPatcher-Launcher\GTPatcher-Launcher\obj\Debug\net8.0-windows\ref\GTPatcher-Launcher.dll
+C:\Users\Kaylie\source\repos\GTPatcher-Launcher\GTPatcher-Launcher\obj\Debug\net8.0-windows\GTPatcher-Launcher.sourcelink.json
+C:\Users\Kaylie\source\repos\GTPatcher-Launcher\GTPatcher-Launcher\bin\Debug\net8.0-windows\xdelta3.dll
+C:\Users\Kaylie\source\repos\GTPatcher-Launcher\GTPatcher-Launcher\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+C:\Users\Kaylie\source\repos\GTPatcher-Launcher\GTPatcher-Launcher\bin\Debug\net8.0-windows\runtimes\win-x64\native\xdelta3.dll
+C:\Users\Kaylie\source\repos\GTPatcher-Launcher\GTPatcher-Launcher\obj\Debug\net8.0-windows\GTPatcher-Launcher.csproj.AssemblyReference.cache
+C:\Users\Kaylie\source\repos\GTPatcher-Launcher\GTPatcher-Launcher\obj\Debug\net8.0-windows\GTPatche.CD4F4904.Up2Date

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GTPatcher-Launcher")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a1250e990d627ed7a81d40b8cddbf6280906b8d")]
 [assembly: System.Reflection.AssemblyProductAttribute("GTPatcher-Launcher")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GTPatcher-Launcher")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
