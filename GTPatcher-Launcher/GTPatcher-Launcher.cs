@@ -1,6 +1,8 @@
 using Newtonsoft.Json;
 using System.Diagnostics;
 using static Constants;
+using System.Net.Http.Headers;
+using System.Net.Http;
 
 namespace GTPatcher_Launcher
 {
@@ -16,6 +18,7 @@ namespace GTPatcher_Launcher
         private async void Form1_Load(object sender, EventArgs e)
         {
             HttpClient jsonIndex = new HttpClient();
+            jsonIndex.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue { NoCache = true }; // This is such a small amount of data that not caching it is probably okay
             Builds = JsonConvert.DeserializeObject<List<BuildInfo>>(await jsonIndex.GetStringAsync(INDEX_JSON));
             if (Builds == null)
             {
