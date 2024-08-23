@@ -17,27 +17,28 @@ namespace GTPatcher_Launcher
         {
             HttpClient jsonIndex = new HttpClient();
             Builds = JsonConvert.DeserializeObject<List<BuildInfo>>(await jsonIndex.GetStringAsync(INDEX_JSON));
-            if (Builds == null) 
+            if (Builds == null)
             {
                 MessageBox.Show("Failed to retrieve builds list. Check your internet connection!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
             Debug.WriteLine($"We got {Builds.Count} build(s) from URL.");
+            foreach (BuildInfo build in Builds)
+            {
+                steamBuildBox.Items.Add(build);
+            }
 
+        }
+
+        private void steamBuildBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedBuild = (BuildInfo)steamBuildBox.SelectedItem;
+            if (selectedBuild == null) return;
+            manifestIdLabel.Text = string.IsNullOrEmpty(selectedBuild.ManifestId.ToString()) ? "No Steam manifest for this build" : selectedBuild.ManifestId.ToString();
+            descriptionLabel.Text = string.IsNullOrEmpty(selectedBuild.PatchDescription) ? "No description for this patch" : selectedBuild.PatchDescription;
         }
 
         private void browseButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void settingsTab_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolTip1_Popup(object sender, PopupEventArgs e)
         {
 
         }

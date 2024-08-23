@@ -7,4 +7,8 @@
     public ulong? ManifestId { get; set; }
     public bool? IsSteam { get; set; }
 
+    public override string ToString()
+    {
+        return PatchName ?? "No Name";
+    }
 }
