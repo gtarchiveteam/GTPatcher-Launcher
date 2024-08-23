@@ -39,22 +39,21 @@
             label3 = new Label();
             bigAssInfoHeader = new Label();
             settingsTab = new TabPage();
-            textBox1 = new TextBox();
+            pathHelpBlurb = new Label();
+            pathBox = new TextBox();
             steamAccountUsername = new TextBox();
             browseButton = new Button();
             pathHeader = new Label();
             steamHelpBlurb = new Label();
             steamAccountUsernameHeader = new Label();
             installationsTab = new TabPage();
-            installedHeader = new Label();
-            openInstallPathButton = new Button();
-            uninstallButton = new Button();
             playButton = new Button();
             descriptionLabel = new Label();
             descriptionHeader = new Label();
             steamBuildBox = new ComboBox();
             buildLabel = new Label();
             tabBox = new TabControl();
+            folderBrowserDialog1 = new FolderBrowserDialog();
             infoTab.SuspendLayout();
             settingsTab.SuspendLayout();
             installationsTab.SuspendLayout();
@@ -72,7 +71,7 @@
             versionLabel.Name = "versionLabel";
             versionLabel.Size = new Size(57, 15);
             versionLabel.TabIndex = 1;
-            versionLabel.Text = "beta 0.1.0";
+            versionLabel.Text = "beta 0.1.1";
             eggTooltip.SetToolTip(versionLabel, "Now, these points of data make a beautiful line\r\nAnd we're out of beta, we're releasing on time\r\nSo I'm GLaD I got burned, think of all the things we learned\r\nFor the people who are still alive\r\n");
             // 
             // manifestHeader
@@ -131,7 +130,8 @@
             // 
             // settingsTab
             // 
-            settingsTab.Controls.Add(textBox1);
+            settingsTab.Controls.Add(pathHelpBlurb);
+            settingsTab.Controls.Add(pathBox);
             settingsTab.Controls.Add(steamAccountUsername);
             settingsTab.Controls.Add(browseButton);
             settingsTab.Controls.Add(pathHeader);
@@ -145,13 +145,23 @@
             settingsTab.Text = "Settings";
             settingsTab.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // pathHelpBlurb
             // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Location = new Point(87, 94);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(675, 23);
-            textBox1.TabIndex = 8;
+            pathHelpBlurb.AutoSize = true;
+            pathHelpBlurb.Location = new Point(6, 120);
+            pathHelpBlurb.Name = "pathHelpBlurb";
+            pathHelpBlurb.Size = new Size(652, 45);
+            pathHelpBlurb.TabIndex = 9;
+            pathHelpBlurb.Text = resources.GetString("pathHelpBlurb.Text");
+            // 
+            // pathBox
+            // 
+            pathBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pathBox.Enabled = false;
+            pathBox.Location = new Point(87, 94);
+            pathBox.Name = "pathBox";
+            pathBox.Size = new Size(675, 23);
+            pathBox.TabIndex = 8;
             // 
             // steamAccountUsername
             // 
@@ -202,9 +212,6 @@
             // 
             // installationsTab
             // 
-            installationsTab.Controls.Add(installedHeader);
-            installationsTab.Controls.Add(openInstallPathButton);
-            installationsTab.Controls.Add(uninstallButton);
             installationsTab.Controls.Add(playButton);
             installationsTab.Controls.Add(descriptionLabel);
             installationsTab.Controls.Add(descriptionHeader);
@@ -220,37 +227,6 @@
             installationsTab.Text = "Installations";
             installationsTab.UseVisualStyleBackColor = true;
             // 
-            // installedHeader
-            // 
-            installedHeader.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            installedHeader.AutoSize = true;
-            installedHeader.Font = new Font("Segoe UI", 9F);
-            installedHeader.Location = new Point(6, 354);
-            installedHeader.Name = "installedHeader";
-            installedHeader.Size = new Size(126, 15);
-            installedHeader.TabIndex = 8;
-            installedHeader.Text = "Currently installed: Yes";
-            // 
-            // openInstallPathButton
-            // 
-            openInstallPathButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            openInstallPathButton.Location = new Point(6, 372);
-            openInstallPathButton.Name = "openInstallPathButton";
-            openInstallPathButton.Size = new Size(107, 23);
-            openInstallPathButton.TabIndex = 7;
-            openInstallPathButton.Text = "Open install path";
-            openInstallPathButton.UseVisualStyleBackColor = true;
-            // 
-            // uninstallButton
-            // 
-            uninstallButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            uninstallButton.Location = new Point(119, 372);
-            uninstallButton.Name = "uninstallButton";
-            uninstallButton.Size = new Size(75, 23);
-            uninstallButton.TabIndex = 6;
-            uninstallButton.Text = "Uninstall";
-            uninstallButton.UseVisualStyleBackColor = true;
-            // 
             // playButton
             // 
             playButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
@@ -261,6 +237,7 @@
             playButton.TabIndex = 2;
             playButton.Text = "Play!";
             playButton.UseVisualStyleBackColor = true;
+            playButton.Click += playButton_Click;
             // 
             // descriptionLabel
             // 
@@ -343,16 +320,13 @@
         private Label versionLabel;
         private Label bigAssInfoHeader;
         private TabPage settingsTab;
-        private TextBox textBox1;
+        private TextBox pathBox;
         private TextBox steamAccountUsername;
         private Button browseButton;
         private Label pathHeader;
         private Label steamHelpBlurb;
         private Label steamAccountUsernameHeader;
         private TabPage installationsTab;
-        private Label installedHeader;
-        private Button openInstallPathButton;
-        private Button uninstallButton;
         private Button playButton;
         private Label descriptionLabel;
         private Label descriptionHeader;
@@ -361,5 +335,7 @@
         private ComboBox steamBuildBox;
         private Label buildLabel;
         private TabControl tabBox;
+        private FolderBrowserDialog folderBrowserDialog1;
+        private Label pathHelpBlurb;
     }
 }

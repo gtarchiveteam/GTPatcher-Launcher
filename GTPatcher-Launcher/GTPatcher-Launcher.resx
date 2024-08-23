@@ -132,4 +132,13 @@ Doing so is both distracting to Another Axiom employees, and to us. Don't do it!
 
 </value>
   </data>
+  <data name="pathHelpBlurb.Text" xml:space="preserve">
+    <value>The launcher will make folders for each version by itself. Please do not manually make more folders for each game version,
+as it will cause duplicate game versions to be installed. For an optimal experience, create an empty folder for your game 
+versions to reside within, and the launcher will handle making the folders for you.
+</value>
+  </data>
+  <metadata name="folderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>263, 17</value>
+  </metadata>
 </root>

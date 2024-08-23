@@ -1,6 +1,7 @@
 ﻿public class BuildInfo
 {
     public string? PatchName { get; set; }
+    public string? PatchShorthand { get; set; }
     public string? PatchDescription { get; set; }
     public string? PatchLink { get; set; }
     public string? GameLink { get; set; } // only used on builds predating steam
@@ -9,6 +10,6 @@
 
     public override string ToString()
     {
-        return PatchName ?? "No Name";
+        return PatchName ?? "No name";
     }
 }
