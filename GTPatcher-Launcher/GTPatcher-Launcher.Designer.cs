@@ -71,8 +71,9 @@
             versionLabel.Name = "versionLabel";
             versionLabel.Size = new Size(57, 15);
             versionLabel.TabIndex = 1;
-            versionLabel.Text = "beta 0.1.1";
+            versionLabel.Text = "beta 0.2.1";
             eggTooltip.SetToolTip(versionLabel, "Now, these points of data make a beautiful line\r\nAnd we're out of beta, we're releasing on time\r\nSo I'm GLaD I got burned, think of all the things we learned\r\nFor the people who are still alive\r\n");
+            versionLabel.Click += versionLabel_Click;
             // 
             // manifestHeader
             // 

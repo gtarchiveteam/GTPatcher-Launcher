@@ -138,5 +138,10 @@ namespace GTPatcher_Launcher
 
             decoder.Run();
         }
+
+        private void versionLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
