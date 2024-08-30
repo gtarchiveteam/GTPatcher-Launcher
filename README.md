@@ -9,3 +9,8 @@ A: We are NEVER, EVER changing anything about the game beyond just the servers i
 Q: Can you do x beta?
 
 A: Yeah! Betas are now possible because we were dumb dumb before
+
+# Donations
+We actively refuse any form of financial support, including donations.
+
+Bringing money into the picture poses a significant risk to the existence of GTPatcher.
