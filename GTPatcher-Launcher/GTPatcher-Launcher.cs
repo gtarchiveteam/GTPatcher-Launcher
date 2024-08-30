@@ -114,7 +114,7 @@ namespace GTPatcher_Launcher
         {
             if ((bool)selectedBuild.IsSteam)
             {
-                var exitCode = SteamHelper.DownloadManifest((ulong)selectedBuild.ManifestId, installPath, steamAccountUsername.Text);
+                var exitCode = SteamHelper.DownloadManifest((ulong)selectedBuild.ManifestId, installPath, steamAccountUsername.Text, (bool)selectedBuild.IsBeta);
                 return exitCode;
             }
             else return -128;

@@ -7,6 +7,7 @@
     public string? GameLink { get; set; } // only used on builds predating steam
     public ulong? ManifestId { get; set; }
     public bool? IsSteam { get; set; }
+    public bool? IsBeta { get; set; }
 
     public override string ToString()
     {
