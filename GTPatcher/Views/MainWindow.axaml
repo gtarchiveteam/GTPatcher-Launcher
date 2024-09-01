@@ -4,10 +4,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Gorilla Tag Patcher Launcher"
+		TransparencyLevelHint="AcrylicBlur"
+		Background="Transparent"
         Width="800" Height="450"
         CanResize="False"
         x:Class="GTPatcher.Views.MainWindow">
-
+	
 	<Grid>
 		<TabControl x:Name="MainTabControl">
 			<!-- Installations Tab -->
