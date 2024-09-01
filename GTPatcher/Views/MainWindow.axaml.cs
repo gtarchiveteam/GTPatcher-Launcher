@@ -60,8 +60,11 @@ namespace GTPatcher.Views
     public partial class MainWindow : Window
     {
         private const string RegistryKeyPath = @"HKEY_CURRENT_USER\SOFTWARE\GTPatcher";
-        private string[] RegistriesValueName = {"InstallationPath", "SteamUsername", "DarkMode"};
+        private string[] RegistriesValueName = {"InstallationPath", "SteamUsername", "DarkMode", "Transparency"};
 
+
+        private string specificBuildPath;
+        private IBrush defaultBackgroundColour;
         private async void ShowMessageBox(string title, string message)
         {
             var box = MessageBoxManager
@@ -90,6 +93,7 @@ namespace GTPatcher.Views
 
                 LoadInstallationPath();
                 LoadUsername();
+                LoadTransparency();
                 //LoadDarkMode();
             }
             else
@@ -154,6 +158,11 @@ namespace GTPatcher.Views
             bool savedDark = (string)Registry.GetValue(RegistryKeyPath, RegistriesValueName[2], "false") == "true" ? true : false;
             //DarkModeCheckBox.IsChecked = savedDark;
         }
+        private void LoadTransparency()
+        {
+            bool savedTransparency = (string)Registry.GetValue(RegistryKeyPath, RegistriesValueName[3], "true") == "true" ? true : false;
+            TransparencyCheckBox.IsChecked = savedTransparency;
+        }
 
         private void SaveRegistry(string path, string registryValue)
         {
@@ -182,6 +191,18 @@ namespace GTPatcher.Views
             SaveRegistry("false", RegistriesValueName[2]);
             ApplyTheme(false);
             this.Background = new SolidColorBrush(Color.Parse("#FFFFFFFF"));
+        }
+        private void TransparencyCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            defaultBackgroundColour = this.Background;
+            SaveRegistry("true", RegistriesValueName[3]);
+            this.Background = new SolidColorBrush(Color.Parse("Transparent"));
+        }
+
+        private void TransparencyCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            SaveRegistry("false", RegistriesValueName[3]);
+            this.Background = defaultBackgroundColour;
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -215,8 +236,18 @@ namespace GTPatcher.Views
         {
             var selectedBuild = BuildsList.FirstOrDefault(x => x.PatchName == Builds.SelectedItem as string);
             if (selectedBuild == null) return;
+            var specificBuildPath = $"{PathTextBox.Text}\\{selectedBuild.PatchShorthand}";
             manifestIdLabel.Text = string.IsNullOrEmpty(selectedBuild.ManifestId.ToString()) ? "No Steam manifest for this build" : selectedBuild.ManifestId.ToString();
             descriptionLabel.Text = string.IsNullOrEmpty(selectedBuild.PatchDescription) ? "No description for this patch" : selectedBuild.PatchDescription;
+            if (Path.Exists(specificBuildPath))
+            {
+                runButton.Content = "Play!";
+            }
+            else
+            {
+                runButton.Content = "Install!";
+
+            }
         }
 
         private async void PlayButton(object sender, RoutedEventArgs e)
@@ -251,6 +282,9 @@ namespace GTPatcher.Views
                     return;
                 }
                 PatchAssembly(selectedBuild, $"{specificBuildPath}\\Gorilla Tag_Data\\Managed");
+                runButton.Content = "Play!";
+                ShowMessageBox("Success!", "This version of the game has been installed, you can now play!");
+                return;
             }
             if (File.Exists($"{specificBuildPath}\\Gorilla Tag.exe"))
                 Process.Start($"{specificBuildPath}\\Gorilla Tag.exe");
