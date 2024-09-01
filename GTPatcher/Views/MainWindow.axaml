@@ -62,7 +62,7 @@
 			<TabItem Header="Info" x:Name="InfoTab">
 				<StackPanel Margin="10">
 					<TextBlock Text="Gorilla Tag Patcher Launcher" FontSize="30" FontWeight="Bold" Margin="0,0,0,0"/>
-					<TextBlock Text="beta 0.2.2" FontSize="14" Margin="0,0,0,275">
+					<TextBlock Text="beta 0.3.0" FontSize="14" Margin="0,0,0,275">
 						<ToolTip.Tip>
 							<StackPanel>
 								<TextBlock>Now, these points of data make a beautiful line</TextBlock>
