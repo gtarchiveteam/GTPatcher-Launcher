@@ -13,4 +13,38 @@
 # GT Patcher Launcher
 A launcher to download and patch particular versions of Gorilla Tag via a Steam account.
 
-You must legally own a copy of Gorilla Tag on Steam to use this launcher.
+Made using [XdeltaSharp](https://github.com/pleonex/xdelta-sharp) and [Avalonia](https://avaloniaui.net/).
+## Features
+
+- Multiple different versions avaliable to patch.
+    <details>
+    <summary>Currently avaliable patches</summary>
+        <ul>
+            <li>Holiday Overstock</li>
+            <li>Neon Colors</li>
+            <li>Mountains Beta</li>
+            <li>Halloween 2022</li>
+            <li>Monke Blocks</li>
+            <li>Steam Release</li>
+        </ul>
+    </details>
+- Proper cloudscripts (cosmetic verification, whitelist, etc).
+- You can actually use Smooth Turn and Private Lobbies! (big shocker)
+
+## FAQ
+
+#### Do you need to own the game on Steam/Can I use the Oculus app version?
+
+You will need to own the game on Steam to be able to download and patch the builds.
+
+#### Doesn't this go against the ToS?
+
+All patches distributed in our repositories are 100% original and contain ZERO code and or assets from Another Axiom, LLC or any affiliated entities therefore applying them doesn't break the ToS
+
+#### Do you get any money from this project?
+
+No. We actively deny any and all financial support related to our project(s). And if you recieved any of our project(s) for any amount of money, you have been scammed by an external entity.
+
+#### Is this a clone/copy?/Will this go on applab?
+
+No and also no, we will not produce clones and will not provide any of our projects onto the Meta "App Lab" or "Store" ***ever***. If you ever see someone claiming to be us on any Meta platform or similar, they are not us.
