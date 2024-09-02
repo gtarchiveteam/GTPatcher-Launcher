@@ -41,6 +41,10 @@ You will need to own the game on Steam to be able to download and patch the buil
 
 All patches distributed in our repositories are 100% original and contain ZERO code and or assets from Another Axiom, LLC or any affiliated entities therefore applying them doesn't break the ToS
 
+#### How is patching different?
+
+You are required to legally own a copy of the game (unlike clones which illegally redistribute Another Axioms property) and the patches applied to the game do not contain any code or assets from Another Axiom and only contain the stuff needed to make it work which makes it completely legal.
+
 #### Do you get any money from this project?
 
 No. We actively deny any and all financial support related to our project(s). And if you recieved any of our project(s) for any amount of money, you have been scammed by an external entity.
@@ -48,3 +52,7 @@ No. We actively deny any and all financial support related to our project(s). An
 #### Is this a clone/copy?/Will this go on applab?
 
 No and also no, we will not produce clones and will not provide any of our projects onto the Meta "App Lab" or "Store" ***ever***. If you ever see someone claiming to be us on any Meta platform or similar, they are not us.
+
+#### Can you add ___?
+
+No, this is meant to be kept as a simple, no bullshit way to play older versions of the game, nothing will be added and nothing will be removed.
