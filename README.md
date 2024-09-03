@@ -13,7 +13,7 @@
 # GT Patcher Launcher
 A launcher to download and patch particular versions of Gorilla Tag via a Steam account.
 
-Made using [XdeltaSharp](https://github.com/pleonex/xdelta-sharp) and [Avalonia](https://avaloniaui.net/).
+Made using [XdeltaSharp](https://github.com/pleonex/xdelta-sharp), [DepotDownloader](https://github.com/SteamRE/DepotDownloader) and [Avalonia](https://avaloniaui.net/).
 ## Features
 
 - Multiple different versions avaliable to patch.
