@@ -37,13 +37,13 @@ Made using [XdeltaSharp](https://github.com/pleonex/xdelta-sharp) and [Avalonia]
 
 You will need to own the game on Steam to be able to download and patch the builds.
 
-#### Doesn't this go against the ToS?
+#### Doesn't this go against the law?
 
-All patches distributed in our repositories are 100% original and contain ZERO code and or assets from Another Axiom, LLC or any affiliated entities therefore applying them doesn't break the ToS
+All patches distributed in our repositories are 100% original and contain ZERO code and or assets from Another Axiom, LLC or any affiliated entities. We don't distribute anything owned by them.
 
 #### How is patching different?
 
-You are required to legally own a copy of the game (unlike clones which illegally redistribute Another Axioms property) and the patches applied to the game do not contain any code or assets from Another Axiom and only contain the stuff needed to make it work which makes it completely legal.
+You are required to legally own a copy of the game (unlike clones which illegally redistribute Another Axiom's property) and the patches applied to the game do not contain any code or assets from Another Axiom and only contain the stuff needed to make it work, which makes it completely legal.
 
 #### Do you get any money from this project?
 
