@@ -56,3 +56,6 @@ No and also no, we will not produce clones and will not provide any of our proje
 #### Can you add ___?
 
 No, this is meant to be kept as a simple, no bullshit way to play older versions of the game, nothing will be added and nothing will be removed.
+
+### Note
+We are NOT related to the similarly named project "Gorilla Tag Archive".
