@@ -4,10 +4,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Gorilla Tag Patcher Launcher"
+		TransparencyLevelHint="AcrylicBlur"
         Width="800" Height="450"
         CanResize="False"
         x:Class="GTPatcher.Views.MainWindow">
-
+	
 	<Grid>
 		<TabControl x:Name="MainTabControl">
 			<!-- Installations Tab -->
@@ -29,7 +30,7 @@
 						   FontSize="11"
 						   TextWrapping="Wrap"/>
 					</StackPanel>
-					<Button Grid.Row="2" Content="Play!" HorizontalAlignment="Right" Margin="10" Padding="10,5"  Click="PlayButton"/>
+					<Button Grid.Row="2" Content="Play!" x:Name="runButton" HorizontalAlignment="Right" Margin="10" Padding="10,5"  Click="PlayButton"/>
 				</Grid>
 			</TabItem>
 
@@ -49,6 +50,11 @@
 						<Button Content="Browse..." Grid.Column="0" Click="BrowseButton_Click"/>
 						<TextBox x:Name="PathTextBox" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,0,0,0" TextChanged="PathTextBox_TextChanged"/>
 					</Grid>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+						<TextBlock Text="Enable Transparency" VerticalAlignment="Center" Margin="0,0,10,0"/>
+						<CheckBox x:Name="TransparencyCheckBox" Checked="TransparencyCheckBox_Checked" Unchecked="TransparencyCheckBox_Unchecked"></CheckBox>
+					</StackPanel>
+					
 					<!--
 					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
 						<TextBlock Text="Dark Mode" VerticalAlignment="Center" Margin="0,0,10,0"/>
