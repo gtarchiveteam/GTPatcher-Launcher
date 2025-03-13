@@ -48,6 +48,6 @@ You can add the .exe files for the version(s) as non-Steam games in your Steam c
 Because of the way process spawning works on Linux, you will have to start the Launcher from a terminal to see the prompt.
 
 #### Why don't my settings save?
-Saving settings is not implemented on Linux yet, as doing so would require a different settings store implementation as Windows does, and we would like to standardize settings stores across platforms.
+Saving settings is not implemented on Linux yet, as doing so with the current settings code would require a different settings store implementation as Windows does. We would like to standardize settings stores across platforms.
 
 Plans for migrating to a platform agonistic settings store are ongoing and we will update you when we get around to that.
