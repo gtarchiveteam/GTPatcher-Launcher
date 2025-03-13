@@ -33,29 +33,21 @@ Made using [XdeltaSharp](https://github.com/pleonex/xdelta-sharp), [DepotDownloa
 
 ## FAQ
 
-#### Do you need to own the game on Steam/Can I use the Oculus app version?
+#### Why do you need my Steam password?
+We use your Steam account to download the game files, as we only distribute our patches. 
 
-You will need to own the game on Steam to be able to download and patch the builds.
+We use DepotDownloader for this, so if you're uncomfortable with providing your Steam account details, you can audit DepotDownloader and/or the GTP Launcher's source code or manually download and patch the versions yourself.
 
-#### Doesn't this go against the law?
+#### I don't want to open the Launcher every time I want to play a GTP build. How do I add them to my library?
+You can add the .exe files for the version(s) as non-Steam games in your Steam client, and include them in your library via the game properties.
 
-All patches distributed in our repositories are 100% original and contain ZERO code and or assets from Another Axiom, LLC or any affiliated entities. We don't distribute anything owned by them.
 
-#### How is patching different?
+## Linux FAQ
 
-You are required to legally own a copy of the game (unlike clones which illegally redistribute Another Axiom's property) and the patches applied to the game do not contain any code or assets from Another Axiom and only contain the stuff needed to make it work, which makes it completely legal.
+#### I don't see a prompt to enter my Steam password!
+Because of the way process spawning works on Linux, you will have to start the Launcher from a terminal to see the prompt.
 
-#### Do you get any money from this project?
+#### Why don't my settings save?
+Saving settings is not implemented on Linux yet, as doing so would require a different settings store implementation as Windows does, and we would like to standardize settings stores across platforms.
 
-No. We actively deny any and all financial support related to our project(s). And if you recieved any of our project(s) for any amount of money, you have been scammed by an external entity.
-
-#### Is this a clone/copy?/Will this go on applab?
-
-No and also no, we will not produce clones and will not provide any of our projects onto the Meta "App Lab" or "Store" ***ever***. If you ever see someone claiming to be us on any Meta platform or similar, they are not us.
-
-#### Can you add ___?
-
-No, this is meant to be kept as a simple, no bullshit way to play older versions of the game, nothing will be added and nothing will be removed.
-
-### Note
-We are NOT related to the similarly named project "Gorilla Tag Archive".
+Plans for migrating to a platform agonistic settings store are ongoing and we will update you when we get around to that.
