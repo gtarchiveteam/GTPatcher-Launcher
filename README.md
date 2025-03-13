@@ -41,6 +41,9 @@ We use DepotDownloader for this, so if you're uncomfortable with providing your 
 #### I don't want to open the Launcher every time I want to play a GTP build. How do I add them to my library?
 You can add the .exe files for the version(s) as non-Steam games in your Steam client, and include them in your library via the game properties.
 
+#### I don't see my question/problem here
+
+More generic questions are at the organization's [profile](https://github.com/gtarchiveteam). If neither that nor this FAQ answer your question, feel free to ask in our Discord server.
 
 ## Linux FAQ
 
