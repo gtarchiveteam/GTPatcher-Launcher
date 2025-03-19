@@ -16,23 +16,12 @@ using System.Net.Http.Headers;
 using System.Diagnostics;
 using System.IO;
 using GTPatcher_Launcher.Utilities;
+using GTPatcher.Types;
 using static Constants;
 
 namespace GTPatcher.Views
 {
-    public class Patch
-    {
-        public string PatchName { get; set; }
-        public string PatchShorthand { get; set; }
-        public string PatchDescription { get; set; }
-        public string PatchLink { get; set; }
-        public string GameLink { get; set; }
-        public long ManifestId { get; set; }
-        public bool IsSteam { get; set; }
-        public bool IsBeta { get; set; }
-    }
-
-
+    
     public static class VisualTreeHelperExtensions
     {
         public static IEnumerable<T> FindVisualChildren<T>(this Control control) where T : Control
@@ -60,7 +49,8 @@ namespace GTPatcher.Views
     public partial class MainWindow : Window
     {
         private const string RegistryKeyPath = @"HKEY_CURRENT_USER\SOFTWARE\GTPatcher";
-        private string[] RegistriesValueName = {"InstallationPath", "SteamUsername", "DarkMode"};
+        private string SettingsPath;
+        private Settings Settings;
 
         private async void ShowMessageBox(string title, string message)
         {
@@ -74,30 +64,16 @@ namespace GTPatcher.Views
         public MainWindow()
         {
             InitializeComponent();
-
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            if (!Path.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                    "GTPatcher")))
             {
-                using (var key = Registry.CurrentUser.OpenSubKey("Software", true))
-                {
-                    if (key != null)
-                    {
-                        if (key.OpenSubKey("GTPatcher") == null)
-                        {
-                            key.CreateSubKey("GTPatcher");
-                        }
-                    }
-                }
-
-                LoadInstallationPath();
-                LoadUsername();
-                //LoadDarkMode();
+                Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GTPatcher"));
             }
-
-            //ApplyTheme(DarkModeCheckBox.IsChecked == true);
-
+            SettingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GTPatcher/settings.json");
+            Settings = File.Exists(SettingsPath) ? JsonConvert.DeserializeObject<Settings>(File.ReadAllText(SettingsPath))! : new Settings();
+            PathTextBox.Text = Settings.Path;
+            UserTextBox.Text = Settings.Username;
             LoadBuilds();
-
-            MainTabControl.SelectionChanged += TabControl_SelectionChanged;
         }
 
         private List<Patch>? BuildsList;
@@ -106,7 +82,7 @@ namespace GTPatcher.Views
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue { NoCache = true };
-            BuildsList = JsonConvert.DeserializeObject<List<Patch>>(await client.GetStringAsync(INDEX_JSON));
+            BuildsList = JsonConvert.DeserializeObject<List<Patch>>(await client.GetStringAsync(INDEX_JSON), new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
 
             if (Builds == null)
             {
@@ -126,91 +102,26 @@ namespace GTPatcher.Views
             
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                ShowMessageBox("Hello there, fellow penguin!", "I see you're on Linux.\nA few things to note:\n- Saving configuration doesn't work yet\n- Running this application from a terminal is REQUIRED to type your Steam password into DepotDownloader\nGood luck! :3");
+                ShowMessageBox("Hello there, fellow penguin!", "I see you're on Linux.\nBefore you go ahead and download a build, running this application from a terminal is REQUIRED to type your Steam password into DepotDownloader\nGood luck, have fun! :3");
             }
         }
 
-
-        private void LoadInstallationPath()
+        private void SaveSettings()
         {
-            string savedPath = (string)Registry.GetValue(RegistryKeyPath, RegistriesValueName[0], string.Empty);
-            if (!string.IsNullOrEmpty(savedPath))
-            {
-                PathTextBox.Text = savedPath;
-            }
-        }
-
-        private void LoadUsername()
-        {
-            string savedUser = (string)Registry.GetValue(RegistryKeyPath, RegistriesValueName[1], string.Empty);
-            if (!string.IsNullOrEmpty(savedUser))
-            {
-                UserTextBox.Text = savedUser;
-            }
-        }
-
-        private void LoadDarkMode()
-        {
-            Console.WriteLine((string)Registry.GetValue(RegistryKeyPath, RegistriesValueName[2], "false"));
-            bool savedDark = (string)Registry.GetValue(RegistryKeyPath, RegistriesValueName[2], "false") == "true" ? true : false;
-            //DarkModeCheckBox.IsChecked = savedDark;
-        }
-
-        private void SaveRegistry(string path, string registryValue)
-        {
-            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) return;
-            Registry.SetValue(RegistryKeyPath, registryValue, path.ToString());
+            Settings.Path = PathTextBox.Text;
+            Settings.Username = UserTextBox.Text;
+            if (!File.Exists(SettingsPath)) File.Create(SettingsPath).Close();
+            File.WriteAllText(SettingsPath, JsonConvert.SerializeObject(Settings));
         }
 
         private void PathTextBox_TextChanged(object? sender, Avalonia.Controls.TextChangedEventArgs e)
         {
-            SaveRegistry(PathTextBox.Text, RegistriesValueName[0]);
+            SaveSettings();
         }
 
         private void SteamUserTextBox_TextChanged(object? sender, Avalonia.Controls.TextChangedEventArgs e)
         {
-            SaveRegistry(UserTextBox.Text, RegistriesValueName[1]);
-        }
-
-        private void DarkModeCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            SaveRegistry("true", RegistriesValueName[2]);
-            ApplyTheme(true);
-            this.Background = new SolidColorBrush(Color.Parse("#FF1E1E1E"));
-        }
-
-        private void DarkModeCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            SaveRegistry("false", RegistriesValueName[2]);
-            ApplyTheme(false);
-            this.Background = new SolidColorBrush(Color.Parse("#FFFFFFFF"));
-        }
-
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //ApplyTheme(DarkModeCheckBox.IsChecked == true);
-        }
-
-        private void ApplyTheme(bool isDarkMode)
-        {
-            var backgroundColor = isDarkMode ? Avalonia.Media.Brushes.Black : Avalonia.Media.Brushes.White;
-            var foregroundColor = isDarkMode ? Avalonia.Media.Brushes.White : Avalonia.Media.Brushes.Black;
-
-            foreach (var textBox in VisualTreeHelperExtensions.FindVisualChildren<TextBox>(this))
-            {
-                textBox.Background = backgroundColor;
-                textBox.Foreground = foregroundColor;
-            }
-
-            foreach (var textBlock in VisualTreeHelperExtensions.FindVisualChildren<TextBlock>(this))
-            {
-                textBlock.Foreground = foregroundColor;
-            }
-
-            foreach (var textBlock in VisualTreeHelperExtensions.FindVisualChildren<Button>(this))
-            {
-                textBlock.Foreground = foregroundColor;
-            }
+            SaveSettings();
         }
 
         private void steamBuildBox_SelectedIndexChanged(object sender, SelectionChangedEventArgs e)
@@ -252,13 +163,13 @@ namespace GTPatcher.Views
                     Directory.Delete(specificBuildPath, true);
                     return;
                 }
-                PatchAssembly(selectedBuild, $"{specificBuildPath}/Gorilla Tag_Data/Managed");
+                PatchAssembly(selectedBuild, $"{specificBuildPath}/{selectedBuild.GameName}_Data/Managed");
             }
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                if (File.Exists($"{specificBuildPath}/Gorilla Tag.exe"))
-                    Process.Start($"{specificBuildPath}/Gorilla Tag.exe");
+                if (File.Exists($"{specificBuildPath}/{selectedBuild.GameName}.exe"))
+                    Process.Start($"{specificBuildPath}/{selectedBuild.GameName}.exe");
             }
             else
             {
@@ -268,12 +179,14 @@ namespace GTPatcher.Views
 
         private int InstallGame(Patch selectedBuild, string installPath)
         {
-            if ((bool)selectedBuild.IsSteam)
+            if (selectedBuild.IsSteam)
             {
-                var exitCode = SteamHelper.DownloadManifest((ulong)selectedBuild.ManifestId, installPath, UserTextBox.Text, (bool)selectedBuild.IsBeta);
-                return exitCode;
+                return DownloadHelper.DownloadManifest((ulong)selectedBuild.ManifestId, installPath, UserTextBox.Text, selectedBuild.Branch);
             }
-            else return -128;
+            else
+            {
+                return DownloadHelper.DownloadUrl(installPath, selectedBuild.GameLink);
+            }
         }
 
         private async void PatchAssembly(Patch selectedBuild, string managedPath)
@@ -309,7 +222,7 @@ namespace GTPatcher.Views
                 {
                     var selectedPath = task.Result;
                     PathTextBox.Text = selectedPath;
-                    SaveRegistry(selectedPath, RegistriesValueName[0]);
+                    SaveSettings();
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
