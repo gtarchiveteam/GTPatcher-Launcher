@@ -2,6 +2,5 @@
 {
     public static int APP_ID = 1533390;
     public static int DEPOT_ID = 1533391;
-    // TODO: change this shit before pushing to master
-    public static string INDEX_JSON = "https://raw.githubusercontent.com/gtarchiveteam/patches/refs/heads/presteam/patchIndex.json";
+    public static string INDEX_JSON = "https://raw.githubusercontent.com/gtarchiveteam/patches/refs/heads/main/patchIndex.json";
 }
