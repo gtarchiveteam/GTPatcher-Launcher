@@ -1,3 +1,6 @@
+# We now live on Codeberg. https://codeberg.org/GT-Archive-Team/GTPatcher-Launcher
+
+
 <div align="center">
     <a href="https://github.com/gtarchiveteam/GTPatcher-Launcher/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/gtarchiveteam/GTPatcher-Launcher?style=flat"></a>
